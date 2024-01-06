@@ -30,6 +30,10 @@ public class Application {
     return reviews;
   }
 
+  public void submitReview(String comment) {
+    reviews.add(comment);
+  }
+
   private void initReviews() {
     reviews.add("All good!");
     reviews.add("First class service and excellent product.");
