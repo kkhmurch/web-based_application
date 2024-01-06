@@ -21,10 +21,12 @@ public class Application {
     // Goto http://localhost:8080/
   }
 
+  public Application() {
+    initReviews();
+  }
+
   @RequestMapping("/reviews")
   public List<String> index() {
-    initReviews();
-
     return reviews;
   }
 
