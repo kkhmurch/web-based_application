@@ -3,6 +3,7 @@ package study.coco.csb.server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -30,7 +31,8 @@ public class Application {
     return reviews;
   }
 
-  public void submitReview(String comment) {
+  @RequestMapping("/reviews/submit")
+  public void submitReview(@RequestParam("comment") String comment) {
     reviews.add(comment);
   }
 
