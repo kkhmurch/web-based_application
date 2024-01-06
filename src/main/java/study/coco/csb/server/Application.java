@@ -12,6 +12,8 @@ import java.util.List;
 @SpringBootApplication
 public class Application {
 
+  List<String> reviews = new ArrayList<>();
+
   public static void main(String[] args) {
     System.out.println("Hello, world!");
 
@@ -21,12 +23,15 @@ public class Application {
 
   @RequestMapping("/reviews")
   public List<String> index() {
-      List<String> reviews = new ArrayList<>();
-      reviews.add("All good!");
-      reviews.add("First class service and excellent product.");
-      reviews.add("Bad communication and quite a delay before dispatch.");
+    initReviews();
 
-      return reviews;
+    return reviews;
+  }
+
+  private void initReviews() {
+    reviews.add("All good!");
+    reviews.add("First class service and excellent product.");
+    reviews.add("Bad communication and quite a delay before dispatch.");
   }
 
 }
