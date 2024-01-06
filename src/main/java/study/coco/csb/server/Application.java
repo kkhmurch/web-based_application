@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @SpringBootApplication
@@ -18,9 +19,14 @@ public class Application {
     // Goto http://localhost:8080/
   }
 
-  @RequestMapping("/")
-  public String index() {
-    return new Date().toString();
+  @RequestMapping("/reviews")
+  public List<String> index() {
+      List<String> reviews = new ArrayList<>();
+      reviews.add("All good!");
+      reviews.add("First class service and excellent product.");
+      reviews.add("Bad communication and quite a delay before dispatch.");
+
+      return reviews;
   }
 
 }
