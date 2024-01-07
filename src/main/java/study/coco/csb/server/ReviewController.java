@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * HTTP endpoints for review-related HTTP requests.
+ */
 @RestController
 public class ReviewController {
 
@@ -16,19 +19,6 @@ public class ReviewController {
   @Autowired
   public ReviewController(ReviewService reviewService) {
     this.reviewService = reviewService;
-  }
-
-  @RequestMapping(path = "/sentence-split")
-  public String splitSentence( @RequestParam("url_parameter_name_sentence") String sentenceJavaMethodParameter) {
-    String header = "<!DOCTYPE html><html><body><ol>";
-    String footer = "</ol></body></html>";
-
-    String[] words = sentenceJavaMethodParameter.split(" ");
-    String htmlWordList = "";
-    for (String word : words) {
-      htmlWordList = htmlWordList + "<li>" + word + "</li>";
-    }
-    return header + htmlWordList + footer;
   }
 
   @RequestMapping("/reviews")

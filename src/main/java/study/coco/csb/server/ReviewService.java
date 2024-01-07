@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handle all business operations for reviews.
+ */
 @Service
 public class ReviewService {
 
