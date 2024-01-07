@@ -23,7 +23,7 @@ public class ReviewController {
   }
 
   @RequestMapping("/reviews")
-  public List<String> getReviews() {
+  public List<Review> getReviews() {
     return reviewService.getReviews();
   }
 
@@ -33,7 +33,7 @@ public class ReviewController {
   }
 
   @RequestMapping("/reviews/{id}")
-  public String getReview(@PathVariable("id") int index)
+  public Review getReview(@PathVariable("id") int index)
   {
     return reviewService.getReview(index);
   }

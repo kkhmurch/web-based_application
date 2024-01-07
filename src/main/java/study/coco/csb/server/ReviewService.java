@@ -11,28 +11,28 @@ import java.util.List;
 @Service
 public class ReviewService {
 
-  List<String> reviews = new ArrayList<>();
+  List<Review> reviews = new ArrayList<>();
 
   public ReviewService() {
     initReviews();
   }
 
   private void initReviews() {
-    reviews.add("All good!");
-    reviews.add("First class service and excellent product.");
-    reviews.add("Bad communication and quite a delay before dispatch.");
+    reviews.add(new Review("All good!", 4));
+    reviews.add(new Review("First class service and excellent product.", 5));
+    reviews.add(new Review("Bad communication and quite a delay before dispatch.", 1));
   }
 
-  public List<String> getReviews() {
+  public List<Review> getReviews() {
     return reviews;
   }
 
-  public String getReview(int index) {
+  public Review getReview(int index) {
     return reviews.get(index);
   }
 
   public void submitReview(String comment) {
-    reviews.add(comment);
+    reviews.add(new Review (comment, 5));
   }
 
 }
