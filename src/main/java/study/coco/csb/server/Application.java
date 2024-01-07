@@ -49,6 +49,12 @@ public class Application {
     reviews.add(comment);
   }
 
+  @RequestMapping("/reviews/specific")
+  public String getReview(@RequestParam("index") int index)
+  {
+    return reviews.get(index);
+  }
+
   private void initReviews() {
     reviews.add("All good!");
     reviews.add("First class service and excellent product.");
