@@ -1,10 +1,7 @@
 package study.coco.csb.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,11 @@ public class ReviewController {
   @RequestMapping("/reviews/submit")
   public void submitReview(@RequestParam("comment") String comment) {
     reviewService.submitReview(comment);
+  }
+
+  @RequestMapping(path="/reviews", method = RequestMethod.POST)
+  public void submitReview(@RequestBody Review review) {
+    reviewService.submitReview(review);
   }
 
   @RequestMapping("/reviews/{id}")

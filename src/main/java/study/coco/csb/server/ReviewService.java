@@ -35,4 +35,8 @@ public class ReviewService {
     reviews.add(new Review (comment, 5));
   }
 
+  public void submitReview(Review review) {
+    reviews.add(review);
+  }
+
 }
