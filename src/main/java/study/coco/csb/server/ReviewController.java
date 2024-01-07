@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,12 +16,6 @@ public class ReviewController {
   @Autowired
   public ReviewController(ReviewService reviewService) {
     this.reviewService = reviewService;
-  }
-
-  List<String> reviews = new ArrayList<>();
-
-  public ReviewController() {
-    initReviews();
   }
 
   @RequestMapping(path = "/sentence-split")
@@ -39,25 +32,19 @@ public class ReviewController {
   }
 
   @RequestMapping("/reviews")
-  public List<String> index() {
-    return reviews;
+  public List<String> getReviews() {
+    return reviewService.getReviews();
   }
 
   @RequestMapping("/reviews/submit")
   public void submitReview(@RequestParam("comment") String comment) {
-    reviews.add(comment);
+    reviewService.submitReview(comment);
   }
 
   @RequestMapping("/reviews/specific")
   public String getReview(@RequestParam("index") int index)
   {
-    return reviews.get(index);
-  }
-
-  private void initReviews() {
-    reviews.add("All good!");
-    reviews.add("First class service and excellent product.");
-    reviews.add("Bad communication and quite a delay before dispatch.");
+    return reviewService.getReview(index);
   }
 
 }
