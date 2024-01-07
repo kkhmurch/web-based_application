@@ -53,6 +53,21 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+           <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>exec-maven-plugin</artifactId>
+               <version>3.0.0</version>
+               <executions>
+                   <execution>
+                       <id>http-java-server</id>
+                   </execution>
+               </executions>
+               <configuration>
+                   <mainClass>study.coco.csb.server.tools.JavaHTTPServer</mainClass>
+                   <classpathScope>test</classpathScope>
+               </configuration>
+           </plugin>
        </plugins>
     </build>
 
