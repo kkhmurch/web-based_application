@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Inet4Address;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -87,7 +87,43 @@ public class JavaHTTPServer implements Runnable{
 			String method = requestLineTokens[0];
 			String path = requestLineTokens[1];
 			String version = requestLineTokens[2];
-			
+
+			// we read all remaining headers till the first empty line
+			ArrayList<String> headers = new ArrayList<>();
+			do {
+				requestLine = in.readLine();
+				System.out.println(requestLine);
+				headers.add(requestLine);
+			} while (!requestLine.isEmpty());
+
+			// we scan the header for additional content after the first empty line
+			int contentLength = 0;
+			for (String header : headers) {
+				if (header.startsWith("Content-Length")) {
+					contentLength = Integer.parseInt(header.split(" ")[1]);
+				}
+			}
+
+			// Prepare char array with given content length and
+			// read the body of the http request
+			char[] body = new char[contentLength];
+			in.read(body);
+
+			String content = new String(body);
+			System.out.println(content);
+
+			// we handle the content as "application/x-www-form-urlencoded",
+			// other Content-Types are not supported right now
+			ArrayList<String> parameters = new ArrayList<>();
+			for (String header : headers) {
+				if (header.startsWith("Content-Type") &&
+								(header.contains("application/x-www-form-urlencoded"))) {
+					parameters.addAll(Arrays.asList(content.split("&")));
+				}
+			}
+
+			System.out.println(parameters);
+
 			// we currently support only GET method, we check
 			if (method.equals("GET")) {
 				// GET method
@@ -106,7 +142,34 @@ public class JavaHTTPServer implements Runnable{
 				out.flush();
 				
 				System.out.println("Response for path" + path + " of type text/html returned");
-				
+
+			} else if (method.equals("POST")) {
+				// POST method
+
+				// we extract the parameter for the name
+				String name = "nobody";
+				for (String parameter : parameters) {
+					if (parameter.startsWith("name")) {
+						name = parameter.split("=")[1];
+					}
+				}
+
+				String responseBody = "<!DOCTYPE html><html><head></head><body>Hello, " + name + "!</body></html>";
+
+				// send HTTP Headers
+				out.println("HTTP/1.1 200 OK");
+				out.println("Server: Java HTTP Server from csb : 1.0");
+				out.println("Date: " + new Date());
+				out.println("Content-type: " + "text/html");
+				out.println("Content-length: " + responseBody.getBytes("UTF-8").length);
+				out.println(); // blank line between headers and content, very important !
+				out.flush(); // flush character output stream buffer
+
+				out.println(responseBody);
+				out.flush();
+
+				System.out.println("Response for path" + path + " of type text/html returned");
+
 			} else {
 				// other HTTP methods
 				System.out.println("501 Not Implemented : " + method + " method.");
