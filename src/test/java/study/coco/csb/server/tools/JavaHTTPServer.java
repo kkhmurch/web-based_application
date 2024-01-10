@@ -1,5 +1,8 @@
 package study.coco.csb.server.tools;
 
+import study.coco.csb.server.Review;
+import study.coco.csb.server.ReviewService;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +12,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  *  This simple HTTP Server was adapted from a tutorial, that can be found on the SSaurel's Blog:
@@ -128,6 +132,19 @@ public class JavaHTTPServer implements Runnable{
 			if (method.equals("GET")) {
 				// GET method
 				String responseBody = "<!DOCTYPE html><html><head></head><body>200</body></html>";
+
+				// We try to implement the same Spring Boot Magic,
+				// that we configured in the ReviewController with
+				// the RequestMapping: @GetMapping("/reviews")
+				System.out.println("Path compare + " + path + " with reviews detected!");
+				if (path.equals("/reviews")) {
+					System.out.println("Path /reviews detected!");
+
+					ReviewService service = new ReviewService();
+					List<Review> reviews = service.getReviews();
+
+					responseBody = reviews.toString();
+				}
 
 				// send HTTP Headers
 				out.println("HTTP/1.1 200 OK");
