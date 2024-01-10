@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple AjAX Request</title>
+
+  <!-- How to use JQuery with a CDN:
+   https://jquery.com/download/#using-jquery-with-a-cdn
+   We use Subresource Integrity to validate the external resource after loading.
+   -->
+  <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+
+
+  <script>
+      // This is the start of our Javascript logic
+
+      // JavaScript allows us to define functions
+      // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions#die_funktionsdeklaration_function_statement
+      // This function can be used together with HTML elements.
+      // Look at the onclick attribute of the button element.
+      function executeRequest() {
+          // we execute an HTTP request to the given URL.
+          // there are even more possible parameters: https://api.jquery.com/jQuery.ajax/
+          let request = $.ajax({url: "http://localhost:8080/reviews"});
+
+          // the return object `request` is documented here: https://api.jquery.com/jQuery.ajax/#jqXHR
+
+          // If this request is successful, we log the response into the Browser Console (F12 in your Browser)
+          request.done(function(response, xtStatus) {
+              console.log("Request was successful, details are below:");
+              console.log(xtStatus);
+              console.log(response);
+          });
+
+          // If this request fails, we log the status and a possible exception
+          request.fail(function(jqXHR, xtStatus, errorThrown) {
+              console.log("Request failed, details are below:");
+              console.log(xtStatus);
+              console.log(errorThrown);
+          });
+      }
+  </script>
+</head>
+<body>
+
+<button type="button" onclick="executeRequest()">Execute Request</button>
+
+</body>
+</html>

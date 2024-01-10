@@ -77,7 +77,8 @@ public class JavaHTTPServer implements Runnable{
 			
 			// get first line of the request from the client
 			String requestLine = in.readLine();
-			
+			System.out.println(requestLine);
+
 			// split request line into separate strings
 			String[] requestLineTokens = requestLine.split(" ");
 			
