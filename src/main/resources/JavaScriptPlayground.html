@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Javascript Playground</title>
+
+  <script>
+      // This is the start of our Javascript logic
+
+      // JavaScript allows us to define functions
+      // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Functions#die_funktionsdeklaration_function_statement
+      // This function can be used together with HTML elements.
+      // Look at the onclick attribute of the button element.
+      function executeFunction() {
+
+          // we define the variable name with the value "Thomas".
+          let name = "Thomas"
+
+          // We can use console.log() to print out into the Browser console (F12).
+          // This is the same as System.out.println() in Java.
+          console.log("The variable name has the value: " + name);
+
+          // The object `document` represents our current HTML page.
+          // See link for more details.
+          // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents#the_important_parts_of_a_web_browser
+          let element = document.getElementById("greeting");
+
+          // We can change html elements, and we will see a direct effect in the Browser.
+          element.innerText = "Hello " + name + "!";
+
+          // We can also add an element to our HTML page.
+          let divElement = document.createElement("div");
+          document.body.appendChild(divElement);
+          divElement.id = "bookName"
+      }
+  </script>
+</head>
+<body>
+
+<h1 id="greeting">Hello</h1>
+
+<button type="button" onclick="executeFunction()">Execute Function</button>
+
+</body>
+</html>
