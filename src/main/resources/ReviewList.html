@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review List</title>
+
+  <style type="text/css">
+      article {
+          border: 2px solid #ccc;
+          background-color: #eee;
+          border-radius: 5px;
+          padding: 16px;
+          margin: 16px 0;
+      }
+      .fa-star {
+          color: orange;
+      }
+  </style>
+
+  <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script>
+      function loadReviews() {
+          let request = $.ajax({ url: "http://localhost:8080/reviews"});
+
+          request.done(function( response ) {
+              let reviewListHtml = "";
+              console.log(response);
+
+              // This is a for loop, iterating over the review array in our response.
+              // see: https://api.jquery.com/jQuery.each/
+              $.each(response, function( key, value ) {
+                  // This is one star
+                  const star = '<span class=\"fa fa-star\"></span>'
+
+                  // This is a templateString
+                  // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Template_literals
+                  const articleTemplate = `
+<article>
+<p>Rating: ${value.rating} ${star}</p>
+<blockquote>${value.comment}</blockquote><a href='http://localhost:8080/reviews/${key}'>Details</a>
+<time datetime="${value.submittedAt}">Submitted: ${new Date(value.submittedAt).toLocaleString()}</time>
+</article>`
+
+                  // We fill our template string for one review and append the result to our reviewListHtml variable.
+                  reviewListHtml = reviewListHtml + articleTemplate.toString();
+              })
+
+              // We add the final result as HTML to our `review` div element.
+              $( "#reviews" ).html(reviewListHtml);
+          });
+
+          // If this request fails, we log the status and a possible exception
+          request.fail(function(jqXHR, xtStatus, errorThrown) {
+              console.log("Request failed, details are below:");
+              console.log(xtStatus);
+              console.log(errorThrown);
+          });
+      }
+  </script>
+</head>
+
+<body>
+
+<h2>Reviews</h2><button type="button" onclick="loadReviews()">Load Reviews</button>
+
+<div id="reviews">
+
+</div>
+
+</body>
+</html>
