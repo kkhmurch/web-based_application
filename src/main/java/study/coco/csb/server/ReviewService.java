@@ -39,4 +39,8 @@ public class ReviewService {
     reviews.add(review);
   }
 
+  public Review deleteReview(int index) {
+    return reviews.remove(index);
+  }
+
 }

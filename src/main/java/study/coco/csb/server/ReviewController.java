@@ -41,4 +41,8 @@ public class ReviewController {
     return reviewService.getReview(index);
   }
 
+  @DeleteMapping(path="/reviews/{id}")
+  public Review deleteReview(@PathVariable("id") int index) {
+    return reviewService.deleteReview(index);
+  }
 }
