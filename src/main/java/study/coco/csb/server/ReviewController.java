@@ -25,8 +25,9 @@ public class ReviewController {
   }
 
   @RequestMapping("/reviews/submit")
-  public void submitReview(@RequestParam("comment") String comment) {
-    reviewService.submitReview(comment);
+  public void submitReview(@RequestParam("comment") String comment, @RequestParam("rating") int rating) {
+    Review newReview = new Review(comment,rating);
+    reviewService.submitReview(newReview);
   }
 
   @RequestMapping(path="/reviews", method = RequestMethod.POST)
