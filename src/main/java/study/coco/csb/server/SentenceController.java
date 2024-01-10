@@ -1,9 +1,6 @@
 package study.coco.csb.server;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Handle various helper endpoints.
@@ -11,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SentenceController {
 
-  @RequestMapping(path = "/sentence-split", method = RequestMethod.POST)
+  @PostMapping(path = "/sentence-split")
   public String splitSentence( @RequestParam("url_parameter_name_sentence") String sentenceJavaMethodParameter) {
     String header = "<!DOCTYPE html><html><body><ol>";
     String footer = "</ol></body></html>";

@@ -19,23 +19,23 @@ public class ReviewController {
     this.reviewService = reviewService;
   }
 
-  @RequestMapping("/reviews")
+  @GetMapping("/reviews")
   public List<Review> getReviews() {
     return reviewService.getReviews();
   }
 
-  @RequestMapping("/reviews/submit")
+  @PostMapping("/reviews/submit")
   public void submitReview(@RequestParam("comment") String comment, @RequestParam("rating") int rating) {
     Review newReview = new Review(comment,rating);
     reviewService.submitReview(newReview);
   }
 
-  @RequestMapping(path="/reviews", method = RequestMethod.POST)
+  @PostMapping(path="/reviews")
   public void submitReview(@RequestBody Review review) {
     reviewService.submitReview(review);
   }
 
-  @RequestMapping("/reviews/{id}")
+  @GetMapping("/reviews/{id}")
   public Review getReview(@PathVariable("id") int index)
   {
     return reviewService.getReview(index);
