@@ -39,6 +39,13 @@ public class ReviewService {
     reviews.add(review);
   }
 
+  public Review updateReview(int index, String comment, int rating) {
+    Review review = reviews.get(index);
+    review.setComment(comment);
+    review.setRating(rating);
+    return reviews.get(index);
+  }
+
   public Review deleteReview(int index) {
     return reviews.remove(index);
   }

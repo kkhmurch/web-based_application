@@ -41,6 +41,11 @@ public class ReviewController {
     return reviewService.getReview(index);
   }
 
+  @PutMapping(path="/reviews/{id}")
+  public Review updateReview(@PathVariable("id") int index, @RequestParam("comment") String comment, @RequestParam("rating") int rating) {
+    return reviewService.updateReview(index, comment, rating);
+  }
+
   @DeleteMapping(path="/reviews/{id}")
   public Review deleteReview(@PathVariable("id") int index) {
     return reviewService.deleteReview(index);
