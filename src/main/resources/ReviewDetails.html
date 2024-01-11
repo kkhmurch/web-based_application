@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review List</title>
+
+  <style type="text/css">
+      article {
+          border: 2px solid #ccc;
+          background-color: #eee;
+          border-radius: 5px;
+          padding: 16px;
+          margin: 16px 0;
+      }
+      .fa-star {
+          color: orange;
+      }
+  </style>
+
+  <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script>
+      function loadReviews() {
+          let reviewId = window.location.hash.substr(1);
+          console.log(reviewId);
+
+          console.log(`Extracted reviewId ${reviewId} from browser url`);
+
+          let request = $.ajax({url: "http://localhost:8080/reviews/" + reviewId});
+
+          request.done(function (response) {
+              let reviewListHtml = "";
+              console.log(response);
+
+              const star = '<span class=\"fa fa-star\"></span>';
+
+              // we loop with the current rating and append one "star" to "stars" with each loop.
+              let stars = "";
+              for (let i = 0; i < response.rating; i++) {
+                  stars += star;
+              }
+
+              const articleTemplate = `
+<article>
+<p>Rating: ${response.rating} ${stars}</p>
+<blockquote>${response.comment}</blockquote>
+<time datetime="${response.submittedAt}">Submitted: ${new Date(response.submittedAt).toLocaleString()}</time>
+</article>`
+              reviewListHtml = reviewListHtml + articleTemplate.toString();
+
+              $("#reviews").html(reviewListHtml);
+          })
+      }
+  </script>
+
+</head>
+<body onload="loadReviews()">
+
+<h2>Reviews</h2><button type="button" onclick="loadReviews()">Reload Reviews</button>
+<div id="reviews">
+
+</div>
+
+
+</body>
+</html>
