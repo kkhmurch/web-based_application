@@ -48,13 +48,26 @@
               const articleTemplate = `
 <article>
 <p>Rating: ${response.rating} ${stars}</p>
-<blockquote>${response.comment}</blockquote>
+<blockquote>${response.comment}</blockquote> <button onclick="deleteReview(${reviewId})">Delete</button>
 <time datetime="${response.submittedAt}">Submitted: ${new Date(response.submittedAt).toLocaleString()}</time>
 </article>`
               reviewListHtml = reviewListHtml + articleTemplate.toString();
 
               $("#reviews").html(reviewListHtml);
           })
+      }
+
+      function deleteReview(reviewId) {
+          let request = $.ajax({url: "http://localhost:8080/reviews/" + reviewId,
+              method: "DELETE"});
+
+          request.done(function (response) {
+              console.log(response);
+
+              // we change the URL back to the ReviewList, so that we see the direct result of the deletion
+              window.location.replace("ReviewList.html");
+          })
+
       }
   </script>
 
