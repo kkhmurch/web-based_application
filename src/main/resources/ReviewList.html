@@ -38,11 +38,17 @@
                   // This is one star
                   const star = '<span class=\"fa fa-star\"></span>'
 
+                  // we loop with the current rating and append one "star" to "stars" with each loop.
+                  let stars = "";
+                  for (let i = 0; i < value.rating; i++) {
+                      stars += star;
+                  }
+
                   // This is a templateString
                   // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Template_literals
                   const articleTemplate = `
 <article>
-<p>Rating: ${value.rating} ${star}</p>
+<p>Rating: ${value.rating} ${stars}</p>
 <blockquote>${value.comment}</blockquote><a href='http://localhost:8080/reviews/${key}'>Details</a>
 <time datetime="${value.submittedAt}">Submitted: ${new Date(value.submittedAt).toLocaleString()}</time>
 </article>`
