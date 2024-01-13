@@ -9,14 +9,16 @@ import java.util.List;
 @RestController
 public class UserController {
 
-  @GetMapping("/users")
-  public List<String> getUsers() {
+  private ArrayList<String> users = new ArrayList<>();
 
-    ArrayList<String> users = new ArrayList<>();
+  public UserController() {
     users.add("Max Mustermann");
     users.add("Erika Mustermann");
     users.add("John Doe");
+  }
 
+  @GetMapping("/users")
+  public List<String> getUsers() {
     return users;
   }
 }
