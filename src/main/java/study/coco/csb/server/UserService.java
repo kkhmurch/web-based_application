@@ -38,4 +38,8 @@ public class UserService {
 
     users.add(new User(name, email));
   }
+
+  public void updateUserEmail(int id, String email) {
+    users.get(id).setEmail(email);
+  }
 }
