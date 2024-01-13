@@ -40,6 +40,13 @@ public class UserService {
   }
 
   public void updateUserEmail(int id, String email) {
+
+    for (User existingUser : users) {
+      if (existingUser.getEmail().equals(email)) {
+        return;
+      }
+    }
+
     users.get(id).setEmail(email);
   }
 }
