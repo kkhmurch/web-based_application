@@ -28,7 +28,14 @@ public class ReviewService {
   }
 
   public Review getReview(int index) {
-    return reviews.get(index);
+    Review result = null;
+    for (Review review : reviews) {
+      if (review.getId() == index) {
+        result = review;
+        break;
+      }
+    }
+    return result;
   }
 
   public void submitReview(String comment) {
@@ -40,14 +47,16 @@ public class ReviewService {
   }
 
   public Review updateReview(int index, String comment, int rating) {
-    Review review = reviews.get(index);
+    Review review = getReview(index);
     review.setComment(comment);
     review.setRating(rating);
     return reviews.get(index);
   }
 
   public Review deleteReview(int index) {
-    return reviews.remove(index);
+    Review reviewToDelete = getReview(index);
+    reviews.remove(reviewToDelete);
+    return reviewToDelete;
   }
 
 }
