@@ -8,9 +8,13 @@ import java.util.List;
 @RestController
 public class UserController {
 
+  UserService userService;
+
   private ArrayList<String> users = new ArrayList<>();
 
-  public UserController() {
+  public UserController(UserService userService) {
+    this.userService = userService;
+
     users.add("Max Mustermann");
     users.add("Erika Mustermann");
     users.add("John Doe");
