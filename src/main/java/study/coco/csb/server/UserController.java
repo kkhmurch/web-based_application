@@ -11,6 +11,12 @@ public class UserController {
 
   @GetMapping("/users")
   public List<String> getUsers() {
-    return new ArrayList<String>();
+
+    ArrayList<String> users = new ArrayList<>();
+    users.add("Max Mustermann");
+    users.add("Erika Mustermann");
+    users.add("John Doe");
+
+    return users;
   }
 }
