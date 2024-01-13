@@ -1,17 +1,26 @@
 package study.coco.csb.server;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class Review {
 
+    private static AtomicLong nextId = new AtomicLong(0);
+
+    private Long id;
     private String comment;
     private int rating;
     private Date submittedAt;
     
     public Review(String comment, int rating) {
+        this.id = nextId.getAndIncrement();
         this.comment = comment;
         this.rating = rating;
         submittedAt = new Date();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getComment() {
