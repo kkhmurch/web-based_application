@@ -29,8 +29,8 @@ public class ReviewService {
     return reviewRepository.findAll();
   }
 
-  public Review getReview(int index) {
-    return reviewRepository.findById((long) index).orElse(null);
+  public Review getReview(Long id) {
+    return reviewRepository.findById(id).orElse(null);
   }
 
   public void submitReview(String comment, int rating) {
@@ -41,16 +41,16 @@ public class ReviewService {
     reviewRepository.save(review);
   }
 
-  public Review updateReview(int index, String comment, int rating) {
-    Review review = getReview(index);
+  public Review updateReview(Long id, String comment, int rating) {
+    Review review = getReview(id);
     review.setComment(comment);
     review.setRating(rating);
     return reviewRepository.save(review);
   }
 
-  public Review deleteReview(int index) {
-    Review reviewToDelete = reviewRepository.findById((long) index).get();
-    reviewRepository.deleteById((long) index);
+  public Review deleteReview(Long id) {
+    Review reviewToDelete = reviewRepository.findById(id).get();
+    reviewRepository.deleteById(id);
     return reviewToDelete;
   }
 

@@ -37,9 +37,9 @@ public class ReviewController {
   }
 
   @GetMapping("/reviews/{id}")
-  public ResponseEntity<Review> getReview(@PathVariable("id") int index)
+  public ResponseEntity<Review> getReview(@PathVariable("id") Long id)
   {
-    Review result = reviewService.getReview(index);
+    Review result = reviewService.getReview(id);
     if (result != null) {
       return ResponseEntity.ok(result);
     } else {
@@ -48,12 +48,12 @@ public class ReviewController {
   }
 
   @PutMapping(path="/reviews/{id}")
-  public Review updateReview(@PathVariable("id") int index, @RequestParam("comment") String comment, @RequestParam("rating") int rating) {
-    return reviewService.updateReview(index, comment, rating);
+  public Review updateReview(@PathVariable("id") Long id, @RequestParam("comment") String comment, @RequestParam("rating") int rating) {
+    return reviewService.updateReview(id, comment, rating);
   }
 
   @DeleteMapping(path="/reviews/{id}")
-  public Review deleteReview(@PathVariable("id") int index) {
-    return reviewService.deleteReview(index);
+  public Review deleteReview(@PathVariable("id") Long id) {
+    return reviewService.deleteReview(id);
   }
 }
