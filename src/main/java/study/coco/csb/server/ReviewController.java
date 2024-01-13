@@ -1,6 +1,7 @@
 package study.coco.csb.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,9 +37,14 @@ public class ReviewController {
   }
 
   @GetMapping("/reviews/{id}")
-  public Review getReview(@PathVariable("id") int index)
+  public ResponseEntity<Review> getReview(@PathVariable("id") int index)
   {
-    return reviewService.getReview(index);
+    Review result = reviewService.getReview(index);
+    if (result != null) {
+      return ResponseEntity.ok(result);
+    } else {
+      return ResponseEntity.notFound().build();
+    }
   }
 
   @PutMapping(path="/reviews/{id}")
