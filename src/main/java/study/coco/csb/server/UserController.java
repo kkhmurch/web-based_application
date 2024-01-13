@@ -30,4 +30,9 @@ public class UserController {
   public void registerUser(@RequestParam("name") String name, @RequestParam("email") String email) {
     users.add(name);
   }
+
+  @DeleteMapping("/users/{id}")
+  public String deleteUser(@PathVariable("id") int id) {
+    return users.remove(id);
+  }
 }
