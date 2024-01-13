@@ -20,12 +20,12 @@ public class UserService {
     return users;
   }
 
-  public String getUser(int id) {
-    return users.get(id).getName();
+  public User getUser(int id) {
+    return users.get(id);
   }
 
-  public String deleteUser(int id) {
-    return users.remove(id).getName();
+  public User deleteUser(int id) {
+    return users.remove(id);
   }
 
   public void createUser(String name, String email) {

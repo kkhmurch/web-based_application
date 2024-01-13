@@ -19,7 +19,7 @@ public class UserController {
   }
 
   @GetMapping("/users/{id}")
-  public String getUser(@PathVariable("id") int id) {
+  public User getUser(@PathVariable("id") int id) {
     return userService.getUser(id);
   }
 
@@ -29,7 +29,7 @@ public class UserController {
   }
 
   @DeleteMapping("/users/{id}")
-  public String deleteUser(@PathVariable("id") int id) {
+  public User deleteUser(@PathVariable("id") int id) {
     return userService.deleteUser(id);
   }
 }
