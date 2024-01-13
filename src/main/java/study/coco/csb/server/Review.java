@@ -1,17 +1,17 @@
 package study.coco.csb.server;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Entity
 public class Review {
 
-    private static AtomicLong nextId = new AtomicLong(0);
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
     private int rating;
@@ -21,7 +21,6 @@ public class Review {
     }
     
     public Review(String comment, int rating) {
-        this.id = nextId.getAndIncrement();
         this.comment = comment;
         this.rating = rating;
         submittedAt = new Date();
