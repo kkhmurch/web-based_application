@@ -22,6 +22,7 @@ public class UserController {
     return users;
   }
 
+  @GetMapping("/users/{id}")
   public String getUser(int id) {
     return users.get(id);
   }
