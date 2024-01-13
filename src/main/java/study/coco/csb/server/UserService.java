@@ -29,6 +29,13 @@ public class UserService {
   }
 
   public void createUser(String name, String email) {
+
+    for (User existingUser : users) {
+      if (existingUser.getEmail().equals(email)) {
+        return;
+      }
+    }
+
     users.add(new User(name, email));
   }
 }
