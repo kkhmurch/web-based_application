@@ -27,4 +27,8 @@ public class UserController {
   public String getUser(@PathVariable("id") int id) {
     return users.get(id);
   }
+
+  public void registerUser(String name, String email) {
+    users.add(name);
+  }
 }
