@@ -49,7 +49,7 @@
                   const articleTemplate = `
 <article>
 <p>Rating: ${value.rating} ${stars}</p>
-<blockquote>${value.comment}</blockquote><a href='ReviewDetails.html#${key}'>Details</a>
+<blockquote>${value.comment}</blockquote><a href='ReviewDetails.html#${value.id}'>Details</a>
 <time datetime="${value.submittedAt}">Submitted: ${new Date(value.submittedAt).toLocaleString()}</time>
 </article>`
 
