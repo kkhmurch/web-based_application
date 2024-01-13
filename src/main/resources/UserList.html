@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User List</title>
+
+  <!-- How to use JQuery with a CDN:
+   https://jquery.com/download/#using-jquery-with-a-cdn
+   We use Subresource Integrity to validate the external resource after loading.
+   -->
+  <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+
+  <script>
+
+      function loadUsers() {
+
+          let request = $.ajax({url: "http://localhost:8080/users"});
+
+          request.done(function successRequest (response, xtStatus) {
+              console.log("Request was successful, details are below:");
+              console.log(xtStatus);
+              console.log(response);
+
+              let users = response;
+
+              let userHtml = "";
+
+              let tableHead = "<table><thead><tr> <th>User Name</th>    <th>Email</th>  </tr>  </thead>  <tbody>"
+
+              let tableFooter = `
+                </tbody>
+</table>
+              `
+
+              userHtml = tableHead;
+
+              // This is a for loop, iterating over the review array in our response.
+              // see: https://api.jquery.com/jQuery.each/
+              $.each(users, function( key, value ) {
+
+                  let tableRow = `
+<tr>
+    <td>${value.name}</td>
+    <td>${value.email}</td>
+</tr>`
+
+                  userHtml += tableRow;
+              });
+
+              userHtml += tableFooter;
+
+              console.log(userHtml)
+
+              $( "#users" ).html(userHtml);
+
+          });
+      }
+
+  </script>
+
+</head>
+<body onload="loadUsers()">
+
+<div id="users">
+</div>
+
+</body>
+</html>
