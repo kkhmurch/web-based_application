@@ -1,16 +1,24 @@
 package study.coco.csb.server;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Entity
 public class Review {
 
     private static AtomicLong nextId = new AtomicLong(0);
 
+    @Id
     private Long id;
     private String comment;
     private int rating;
     private Date submittedAt;
+
+    protected Review() {
+    }
     
     public Review(String comment, int rating) {
         this.id = nextId.getAndIncrement();
