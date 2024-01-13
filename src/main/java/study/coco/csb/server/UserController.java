@@ -1,9 +1,6 @@
 package study.coco.csb.server;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +27,7 @@ public class UserController {
   }
 
   @PostMapping("/users/submit")
-  public void registerUser(String name, String email) {
+  public void registerUser(@RequestParam("name") String name, @RequestParam("email") String email) {
     users.add(name);
   }
 }
