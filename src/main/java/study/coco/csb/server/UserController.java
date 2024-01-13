@@ -21,4 +21,8 @@ public class UserController {
   public List<String> getUsers() {
     return users;
   }
+
+  public String getUser(int id) {
+    return users.get(id);
+  }
 }
