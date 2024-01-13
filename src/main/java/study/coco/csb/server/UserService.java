@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -17,8 +16,8 @@ public class UserService {
     users.add(new User("John Doe", "john.doe@example.com"));
   }
 
-  public List<String> getUsers() {
-    return users.stream().map(User::getName).collect(Collectors.toList());
+  public List<User> getUsers() {
+    return users;
   }
 
   public String getUser(int id) {
