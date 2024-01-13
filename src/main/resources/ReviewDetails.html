@@ -26,7 +26,7 @@
 
   <script>
       function loadReviews() {
-          let reviewId = window.location.hash.substr(1);
+          let reviewId = window.location.hash.substring(1);
           console.log(reviewId);
 
           console.log(`Extracted reviewId ${reviewId} from browser url`);
@@ -34,7 +34,6 @@
           let request = $.ajax({url: "http://localhost:8080/reviews/" + reviewId});
 
           request.done(function (response) {
-              let reviewListHtml = "";
               console.log(response);
 
               const star = '<span class=\"fa fa-star\"></span>';
@@ -51,9 +50,8 @@
 <blockquote>${response.comment}</blockquote> <button onclick="deleteReview(${reviewId})">Delete</button>
 <time datetime="${response.submittedAt}">Submitted: ${new Date(response.submittedAt).toLocaleString()}</time>
 </article>`
-              reviewListHtml = reviewListHtml + articleTemplate.toString();
 
-              $("#reviews").html(reviewListHtml);
+              $("#reviews").html(articleTemplate);
           })
       }
 
