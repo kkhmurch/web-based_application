@@ -141,7 +141,7 @@ public class JavaHTTPServer implements Runnable{
 				if (path.equals("/reviews")) {
 					System.out.println("Path /reviews detected!");
 
-					ReviewService service = new ReviewService();
+					ReviewService service = new ReviewService(null);
 					List<Review> reviews = service.getReviews();
 
 					responseBody = reviews.toString();

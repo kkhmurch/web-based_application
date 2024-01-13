@@ -1,5 +1,6 @@
 package study.coco.csb.server;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +14,11 @@ public class ReviewService {
 
   List<Review> reviews = new ArrayList<>();
 
-  public ReviewService() {
+  private ReviewRepository reviewRepository;
+
+  @Autowired
+  public ReviewService(ReviewRepository reviewRepository) {
+    this.reviewRepository = reviewRepository;
     initReviews();
   }
 
