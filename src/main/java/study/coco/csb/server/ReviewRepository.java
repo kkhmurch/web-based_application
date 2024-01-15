@@ -11,4 +11,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long>{
 
   @Query("SELECT r FROM Review r ORDER BY r.submittedAt DESC")
   List<Review> findAllReviewsSorted();
+
+  @Query("SELECT r FROM Review r WHERE r.shop = :shop ORDER BY r.submittedAt DESC")
+  List<Review> findAllReviewsSortedForShop(Shop shop);
+
 }

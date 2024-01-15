@@ -25,6 +25,11 @@ public class ReviewController {
     return reviewService.getReviews();
   }
 
+  @GetMapping("/shops/{shopId}/reviews")
+  public List<Review> getReviews(@PathVariable("shopId") Long shopId) {
+    return reviewService.getReviewsForShop(shopId);
+  }
+
   @PostMapping("/reviews/submit")
   public void submitReview(@RequestParam("comment") String comment, @RequestParam("rating") int rating) {
     Review newReview = new Review(comment,rating);

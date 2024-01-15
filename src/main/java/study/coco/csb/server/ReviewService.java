@@ -25,6 +25,11 @@ public class ReviewService {
     return reviewRepository.findAllReviewsSorted();
   }
 
+  public List<Review> getReviewsForShop(Long shopId) {
+    Shop shop = shopService.getShop(shopId);
+    return reviewRepository.findAllReviewsSortedForShop(shop);
+  }
+
   public Review getReview(Long id) {
     return reviewRepository.findById(id).orElse(null);
   }
