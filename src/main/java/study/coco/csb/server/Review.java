@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 import java.util.Date;
 
@@ -16,6 +17,9 @@ public class Review {
     private String comment;
     private int rating;
     private Date submittedAt;
+
+    @ManyToOne
+    private Shop shop;
 
     protected Review() {
     }
@@ -52,6 +56,14 @@ public class Review {
 
     public void setSubmittedAt(Date submittedAt) {
         this.submittedAt = submittedAt;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
 }
