@@ -13,9 +13,12 @@ public class ReviewService {
 
   private ReviewRepository reviewRepository;
 
+  private ShopService shopService;
+
   @Autowired
-  public ReviewService(ReviewRepository reviewRepository) {
+  public ReviewService(ReviewRepository reviewRepository, ShopService shopService) {
     this.reviewRepository = reviewRepository;
+    this.shopService = shopService;
   }
 
   public List<Review> getReviews() {
@@ -32,6 +35,12 @@ public class ReviewService {
 
   public void submitReview(Review review) {
     reviewRepository.save(review);
+  }
+
+  public void submitReviewForShop(Review newReview, Long shopId) {
+    Shop reviewedShop = shopService.getShop(shopId);
+    newReview.setShop(reviewedShop);
+    reviewRepository.save(newReview);
   }
 
   public Review updateReview(Long id, String comment, int rating) {
