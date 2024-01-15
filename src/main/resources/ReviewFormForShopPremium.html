@@ -50,6 +50,26 @@
 
       function loadShops() {
 
+          let request = $.ajax({url: "http://localhost:8080/shops"});
+
+          request.done(function successRequest (response, xtStatus) {
+              console.log("Request was successful, details are below:");
+              console.log(xtStatus);
+              console.log(response);
+
+              let shops = response;
+
+              let shopSelect = document.getElementById("shop");
+
+              $.each(shops, function( key, value ) {
+
+                  let optionElement = document.createElement('option');
+                  optionElement.value = value.id;
+                  optionElement.innerHTML = value.name;
+
+                  shopSelect.appendChild(optionElement);
+              });
+          });
       }
 
   </script>
@@ -64,9 +84,6 @@
   <input id="rating" name="rating">
   <label for="shop">Shop</label>
   <select id="shop" name="shopId">
-    <option value="1">SockenShop24</option>
-    <option value="2">Donau</option>
-    <option value="3">klamotten</option>
   </select>
   <button>Submit</button>
 </form>
