@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review Submission FormData</title>
+
+  <style>
+      form {
+          width: 30em;
+      }
+
+      form label[for=reviewWithShopSubmission] {
+          font-weight: bold;
+          font-size: 150%;
+          width: 100%;
+          margin-bottom: 1em;
+      }
+
+      input,
+      label,
+      select {
+          float: left;
+          width: 40%;
+      }
+
+      input,
+      select {
+          margin: 0 0 1em .2em;
+          padding: .2em .5em;
+          border: 1px solid;
+      }
+
+      button {
+          margin-top: 1.5em;
+          width: 30%;
+      }
+
+  </style>
+
+  <!-- How to use JQuery with a CDN:
+   https://jquery.com/download/#using-jquery-with-a-cdn
+   We use Subresource Integrity to validate the external resource after loading.
+   -->
+  <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+
+  <script>
+
+      function loadShops() {
+
+      }
+
+  </script>
+</head>
+<body onload="loadShops()">
+
+<form id="reviewWithShopSubmission" action="http://localhost:8080/reviews/submitForShop" method="POST">
+  <label class="h2" for="reviewWithShopSubmission">Review (with form)</label>
+  <label for="comment">Comment</label>
+  <input id="comment" name="comment">
+  <label for="rating">Rating</label>
+  <input id="rating" name="rating">
+  <label for="shop">Shop</label>
+  <select id="shop" name="shopId">
+    <option value="1">SockenShop24</option>
+    <option value="2">Donau</option>
+    <option value="3">klamotten</option>
+  </select>
+  <button>Submit</button>
+</form>
+
+</body>
+</html>
