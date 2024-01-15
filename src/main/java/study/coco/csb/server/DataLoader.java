@@ -105,6 +105,10 @@ public class DataLoader implements ApplicationRunner {
         reviewRepository.save(review9);
         reviewRepository.save(review10);
 
+
+        maxMustermann.setShop(sockenShop24);
+        userRepository.save(maxMustermann);
+
         logger.info("Data initialization finished.");
     }
 }

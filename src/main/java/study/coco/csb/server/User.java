@@ -13,6 +13,9 @@ public class User {
 
   private String email;
 
+  @OneToOne
+  private Shop shop;
+
   protected User() {
   }
 
@@ -40,4 +43,13 @@ public class User {
   public void setEmail(String email) {
     this.email = email;
   }
+
+  public Shop getShop() {
+    return shop;
+  }
+
+  public void setShop(Shop shop) {
+    this.shop = shop;
+  }
+
 }
