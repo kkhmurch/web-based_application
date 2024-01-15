@@ -26,7 +26,7 @@ public class ReviewService {
   }
 
   public List<Review> getReviews() {
-    return reviewRepository.findAll();
+    return reviewRepository.findAllReviewsSorted();
   }
 
   public Review getReview(Long id) {
