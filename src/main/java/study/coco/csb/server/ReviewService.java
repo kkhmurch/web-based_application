@@ -16,13 +16,6 @@ public class ReviewService {
   @Autowired
   public ReviewService(ReviewRepository reviewRepository) {
     this.reviewRepository = reviewRepository;
-    initReviews();
-  }
-
-  private void initReviews() {
-    reviewRepository.save(new Review("All good!", 4));
-    reviewRepository.save(new Review("First class service and excellent product.", 5));
-    reviewRepository.save(new Review("Bad communication and quite a delay before dispatch.", 1));
   }
 
   public List<Review> getReviews() {

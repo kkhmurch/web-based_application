@@ -13,13 +13,6 @@ public class UserService {
   @Autowired
   public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
-    initUsers();
-  }
-
-  private void initUsers() {
-    userRepository.save(new User("Max Mustermann", "max.mustermann@example.com"));
-    userRepository.save(new User("Erika Mustermann", "erika.mustermann@example.com"));
-    userRepository.save(new User("John Doe", "john.doe@example.com"));
   }
 
   public List<User> getUsers() {
